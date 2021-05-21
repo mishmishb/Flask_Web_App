@@ -1,16 +1,41 @@
 from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import redirect
+from flask_sqlalchemy import SQLAlchemy
 from script import cuboid_calculator
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="michaelb",
+    password="ionostest",
+    hostname="85.215.227.215",
+    databasename="cuboidcalc",
+)
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
+
+class SavedResults(db.Model):
+
+    __tablename__ = "saved_results"
+
+    id = db.Column(db.Integer, primary_key=True)
+    edge_a = db.Column(db.Float)
+    edge_b = db.Column(db.Float)
+    edge_c = db.Column(db.Float)
+    volume = db.Column(db.Float)
+    surface_area = db.Column(db.Float)
+    sum_of_edge_lengths = db.Column(db.Float)
+
+
+
 
 saved_results = ['Empty']
 saved_volume = ['Empty']
 saved_surface_area = ['Empty']
 saved_sum_of_edge_lengths = ['Empty']
-
-
 
 @app.route("/", methods=["GET", "POST"])
 def main():
