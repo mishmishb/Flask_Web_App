@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <title>Simple Cuboid Calculator</title>
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Simple Cuboid Calculator</a>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <div class="row">
-                {errors}
+        <div class="content">
+            <div class="form">
                 <p>Enter your edges:</p>
                 <form method="post" action=".">
                     <p><input name="input_a"/></p>
@@ -31,12 +17,37 @@
                     <p><input name="input_c"/></p>
                     <p><input type="submit" class="btn btn-success" value="Perform calculations"/></p>
                 </form>
-                <p>Volume: {saved_volume[0]}</p>
-                <p>Surface Area: {saved_surface_area[0]}</p>
-                <p>Sum Of Edge Lengths: {saved_sum_of_edge_lengths[0]}</p>
-
             </div>
-            
-        </div><!-- /.container -->
+            <div>
+                {% if saved_errors|length > 1 %}
+                <h3>{{saved_errors[0]}}</h3>
+                {% endif %}
+                <br>
+                <p>Volume: {{saved_volume[0]}}</p>
+                <p>Surface Area: {{saved_surface_area[0]}}</p>
+                <p>Sum Of Edge Lengths: {{saved_sum_of_edge_lengths[0]}}</p>
+                <br>
+                <table>
+                    <tr>
+                        <th>Edge A</th>
+                        <th>Edge B</th>
+                        <th>Edge C</th>
+                        <th>Volume</th>
+                        <th>Surface Area</th>
+                        <th>Sum Of Edge Lengths</th>
+                    </tr>
+                    {% for entries in saved_results %}
+                    <tr>
+                        <td>{{ entries.edge_a}}</td>
+                        <td>{{ entries.edge_b}}</td>
+                        <td>{{ entries.edge_c}}</td>
+                        <td>{{ entries.volume}}</td>
+                        <td>{{ entries.surface_area}}</td>
+                        <td>{{ entries.sum_of_edge_lengths}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </body>
 </html>

@@ -3,6 +3,8 @@
 
 import argparse
 
+from werkzeug.utils import bind_arguments
+
 def parse_arguments():
     # Initialise parser and set help description
     parser = argparse.ArgumentParser(description=
@@ -47,12 +49,16 @@ def cuboid_calculator(a, b, c):
 
     # Store results in dictionary
     results = {
+        'input_a': a,
+        'input_b': b,
+        'input_c': c,
         'volume': volume,
         'surface_area': surface_area,
         'sum_of_edge_lengths': sum_of_edge_lengths
     }
 
-    print(results)
+    for key, value in results.items():
+        print(f'{key.capitalize()}: {value}')
     return results
 
 
