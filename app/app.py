@@ -33,11 +33,7 @@ class SavedResults(db.Model):
     sum_of_edge_lengths = db.Column(db.Float)
 
 
-saved_volume = ['Empty']
-saved_surface_area = ['Empty']
-saved_sum_of_edge_lengths = ['Empty']
 saved_errors = ['Empty']
-
 
 def input_validator(input_a, input_b, input_c, errors):
     ''' Check the inputs exist and are positive numbers '''
@@ -64,10 +60,7 @@ def main():
     if request.method == "GET":
         saved_results = SavedResults.query.order_by(SavedResults.id.desc()).limit(30)
         return render_template('index.html', saved_errors=saved_errors,
-                                            saved_volume=saved_volume,
-                                            saved_surface_area=saved_surface_area,
-                                            saved_sum_of_edge_lengths=saved_sum_of_edge_lengths,
-                                            saved_results=saved_results)
+                                             saved_results=saved_results)
 
     input_a = request.form['input_a']
     input_b = request.form['input_b']
@@ -81,9 +74,6 @@ def main():
         if len(saved_errors) > 0:
             saved_errors[0] = 'Empty'
         result = cuboid_calculator(input_a, input_b, input_c)
-        saved_volume.insert(0, result['volume'])
-        saved_surface_area.insert(0, result['surface_area'])
-        saved_sum_of_edge_lengths.insert(0, result['sum_of_edge_lengths'])
 
         db_entries = SavedResults(edge_a=input_a,
                                 edge_b=input_b,
