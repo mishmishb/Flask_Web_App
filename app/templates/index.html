@@ -19,8 +19,8 @@
                 </form>
             </div>
             <div>
-                {% if saved_errors|length > 1 %}
-                <h3>{{saved_errors[0]}}</h3>
+                {% if saved_errors[0] != 'Empty' %}
+                <h3>Errors: {{saved_errors[0]}}</h3>
                 {% endif %}
                 <br>
                 <p>Volume: {{saved_volume[0]}}</p>
@@ -29,6 +29,7 @@
                 <br>
                 <table>
                     <tr>
+                        <th>Entry Number</th>
                         <th>Edge A</th>
                         <th>Edge B</th>
                         <th>Edge C</th>
@@ -38,6 +39,7 @@
                     </tr>
                     {% for entries in saved_results %}
                     <tr>
+                        <td>{{ entries.id }}</td>
                         <td>{{ entries.edge_a}}</td>
                         <td>{{ entries.edge_b}}</td>
                         <td>{{ entries.edge_c}}</td>
