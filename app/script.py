@@ -3,8 +3,6 @@
 
 import argparse
 
-from werkzeug.utils import bind_arguments
-
 def parse_arguments():
     # Initialise parser and set help description
     parser = argparse.ArgumentParser(description=
