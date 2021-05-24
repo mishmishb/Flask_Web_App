@@ -56,3 +56,37 @@ def test_home_page_accessible(app, client):
     assert b'Simple Cuboid Calculator' in response.data
     assert b'Enter your edges:' in response.data
 
+
+# Scenario 2
+
+def test_limited_table_size(app, client):
+    """
+    GIVEN our Flask application
+    WHEN the '/' page is requested
+    THEN check there are not more than 30 db entries shown
+    """
+
+    response = client.get('/')
+    assert response.status_code == 200
+    result = response.data.decode("utf-8").count('database-row')
+    assert result <= 30
+    
+
+# Scenario 3
+
+def test_forms(app, client):
+    """
+    GIVEN our Flask application
+    WHEN the input forms are filled
+    THEN check that the calulcation results are pushed to the page
+    """
+
+    post_response = client.post('/', data=dict(
+        input_a='4',
+        input_b='9',
+        input_c='12'
+    ))
+    get_response = client.get('/')
+    assert b'Volume: 432.0' in get_response.data
+    assert b'Surface Area: 384.0' in get_response.data
+    assert b'Sum Of Edge Lengths: 100.0' in get_response.data

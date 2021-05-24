@@ -1,6 +1,8 @@
 # Cuboid Calculator
 
-## Using the script
+## Task 1
+
+### Using the script
 
 The script is very simple and takes command line inputs. 
 You may run "python3 script.py --help" to view the options.
@@ -11,7 +13,6 @@ To run tests you must activate the venv with:
 and then execute
 ` python -m pytest test.py `
 
-## Testing
 
 ### Scenario 1
 
@@ -48,6 +49,7 @@ exception is raised.
 | cuboid_calculator()           | string to float: '<STRING>') |        |
 | ----------------------------- | ---------------------------- | ------ |
 
+
 ### Scenario 3
 
 It does not make sense to non-positive numbers to this calculator.
@@ -61,3 +63,45 @@ rather than receive potentially confusing results.
 | argument for cuboid_calculator() | is a non-positive number.    |        |
 | -------------------------------- | ---------------------------- | ------ |
 
+
+## Task 2
+
+### Scenario 1
+
+The most important thing to test is that the web app is running and is
+reachable so the first test should cover this. 
+
+| Test Case                        | Acceptance Criteria          | Status |
+| -------------------------------- | ---------------------------- | ------ |
+| Start flask app, check for valid | response code 200 received   | Passed |
+| response code and expected text  | and expected text returned   |        |
+| -------------------------------- | ---------------------------- | ------ |
+
+
+### Scenario 2
+
+Part of the requirements are to only show 30 of the last results, so it
+is worthwhile to test that this is the case.
+
+| Test Case                          | Acceptance Criteria        | Status |
+|------------------------------------|----------------------------|--------|
+| Start flask app, check for valid   | response code 200 received | Passed |
+| response code and maximum 30 table | and 30 or less table rows  |        |
+| entries                            | returned                   |        |
+|------------------------------------|----------------------------|--------|
+
+
+### Scenario 3
+
+We should verify that when inputs are being pushed from the forms, they are
+being calculated and sent to the UI.
+
+
+| Test Case                        | Acceptance Criteria          | Status |
+|----------------------------------|------------------------------|--------|
+| Start flask app, post values for | "Volume: X"                  | Passed |
+| inputs. Perform GET request and  | "Surface Area: Y"            |        |
+| check that results are contained | "Sum Of Edge Lengths: "Z"    |        |
+| within the response data         | where X,Y,Z are accurate     |        |
+|                                  | calculations from the inputs |        |
+|----------------------------------|------------------------------|--------|
