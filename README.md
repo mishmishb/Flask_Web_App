@@ -1,3 +1,7 @@
+The web app is available at the web servers ip:
+85.215.227.214
+
+
 # Cuboid Calculator
 
 ## Task 1
@@ -9,9 +13,9 @@ You may run "python3 script.py --help" to view the options.
 An example use would be "python3 script.py 7 4 2.3"
 
 To run tests you must activate the venv with:
-` source myenv/bin/activate `
+` source myenv2/bin/activate `
 and then execute
-` python -m pytest test.py `
+` python -m pytest /root/task_2/app/tests.py `
 
 
 ### Scenario 1
