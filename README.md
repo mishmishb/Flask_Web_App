@@ -1,7 +1,5 @@
 # Cuboid Calculator
 
-## Task 1
-
 ### Using the script
 
 The script is very simple and takes command line inputs. 
@@ -61,9 +59,7 @@ rather than receive potentially confusing results.
 | -------------------------------- | ---------------------------- | ------ |
 
 
-## Task 2
-
-### Scenario 1
+### Scenario 4
 
 The most important thing to test is that the web app is running and is
 reachable so the first test should cover this. 
@@ -75,7 +71,7 @@ reachable so the first test should cover this.
 | -------------------------------- | ---------------------------- | ------ |
 
 
-### Scenario 2
+### Scenario 5
 
 Part of the requirements are to only show 30 of the last results, so it
 is worthwhile to test that this is the case.
@@ -88,7 +84,7 @@ is worthwhile to test that this is the case.
 |------------------------------------|----------------------------|--------|
 
 
-### Scenario 3
+### Scenario 6
 
 We should verify that when inputs are being pushed from the forms, they are
 being calculated and sent to the UI.
