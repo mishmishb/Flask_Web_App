@@ -8,10 +8,7 @@ The script is very simple and takes command line inputs.
 You may run "python3 script.py --help" to view the options.
 An example use would be "python3 script.py 7 4 2.3"
 
-To run tests you must activate the venv with:
-` source myenv2/bin/activate `
-and then execute
-` python -m pytest /root/task_2/app/tests.py `
+To run tests execute ` python -m pytest app/tests.py `
 
 
 ### Scenario 1
