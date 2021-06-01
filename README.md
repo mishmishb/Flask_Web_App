@@ -1,7 +1,3 @@
-The web app is available at the web servers ip:
-85.215.227.214
-
-
 # Cuboid Calculator
 
 ## Task 1
